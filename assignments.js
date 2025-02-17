@@ -67,7 +67,6 @@ console.log("description of console log:", variabelName)
 
 */
 
-//! skriv oppgave 3.1 svar her
 
 // Konsoll logger:
 console.log("Sum of odds:", sumOfOdds);
@@ -127,7 +126,6 @@ if (this > that) {
 
 */
 
-//! skriv conditional logikken her
 
 let typeDifference;
 
@@ -154,7 +152,6 @@ eks: document.getElementByid("dinReferanseVerdiFraPtaggen").textContent = variab
 
 */
 
-//! definer en ny variabel for referanse til verdien du skal vise frem
 
 // Definer nye variabler for gjennomsnittsverdiene
 const avgOfOdds = sumOfOdds / odds.length;  // Gjennomsnitt av oddetallene
@@ -166,7 +163,6 @@ let averageDifference;
 // Oppdater <p> tag'en med resultatet
 document.getElementById("averageDifferenceDisplay").textContent = averageDifference;
 
-//! skriv if else her
 // Skriv if/else logikk for å sammenligne gjennomsnittsverdiene
 if (avgOfOdds > avgOfEvens) {
     averageDifference = `The average of odd numbers (${avgOfOdds.toFixed(2)}) is greater than the average of even numbers (${avgOfEvens.toFixed(2)}).`;
@@ -186,7 +182,6 @@ f.eks median, størst verdi, minst verdi, hvor mange verdier er over/under en vi
 */
 
 
-//! Koden under skal ikke røres. Den gjør at man får ut svaret på nettsiden:
 // Funksjon for å finne median
 function findMedian(arr) {
     const sorted = arr.sort((a, b) => a - b); // Sorter arrayen
