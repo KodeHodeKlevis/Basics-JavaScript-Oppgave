@@ -175,6 +175,47 @@ f.eks median, størst verdi, minst verdi, hvor mange verdier er over/under en vi
 */
 
 
+// // Funksjon for å finne median
+// function findMedian(arr) {
+//   const sorted = arr.sort((a, b) => a - b); // Sorter arrayen
+//   const mid = Math.floor(sorted.length / 2);
+//   if (sorted.length % 2 === 0) {
+//       return (sorted[mid - 1] + sorted[mid]) / 2; // Gjennomsnitt av de to midterste for partall lengde
+//   } else {
+//       return sorted[mid]; // Midterste element for oddetall lengde
+//   }
+// }
+
+// // Funksjoner for å finne største og minste verdi
+// const maxOfOdds = Math.max(...odds);
+// const minOfOdds = Math.min(...odds);
+// const maxOfEvens = Math.max(...evens);
+// const minOfEvens = Math.min(...evens);
+
+// // Funksjoner for å telle hvor mange verdier som er over/under 500
+// const over500Odds = odds.filter(num => num > 500).length;
+// const under500Odds = odds.filter(num => num < 500).length;
+// const over500Evens = evens.filter(num => num > 500).length;
+// const under500Evens = evens.filter(num => num < 500).length;
+
+// // Sjekk om det finnes noen felles verdier i odds og evens
+// const commonValues = odds.some(num => evens.includes(num));
+
+// // Beregn medianene
+// const medianOfOdds = findMedian(odds);
+// const medianOfEvens = findMedian(evens);
+
+// // Lag en template literal for å vise informasjonen på nettsiden
+// let newInfo = `Median of Odds: ${medianOfOdds}. Median of Evens: ${medianOfEvens}.<br>`;
+// newInfo += `Max of Odds: ${maxOfOdds}. Min of Odds: ${minOfOdds}.<br>`;
+// newInfo += `Max of Evens: ${maxOfEvens}. Min of Evens: ${minOfEvens}.<br>`;
+// newInfo += `Number of Odds greater than 500: ${over500Odds}. Number of Odds less than 500: ${under500Odds}.<br>`;
+// newInfo += `Number of Evens greater than 500: ${over500Evens}. Number of Evens less than 500: ${under500Evens}.<br>`;
+// newInfo += commonValues ? `There are common values between Odds and Evens.` : `There are no common values between Odds and Evens.`;
+
+// // Oppdater HTML med resultatet
+// document.getElementById("newStats").innerHTML = newInfo; 
+
 // Funksjon for å finne median
 function findMedian(arr) {
   const sorted = arr.sort((a, b) => a - b); // Sorter arrayen
@@ -205,6 +246,14 @@ const commonValues = odds.some(num => evens.includes(num));
 const medianOfOdds = findMedian(odds);
 const medianOfEvens = findMedian(evens);
 
+// Sjekk om noen verdier er lik en spesifikk verdi (for eksempel 100)
+const hasValue100InOdds = odds.includes(100);
+const hasValue100InEvens = evens.includes(100);
+
+// Beregn forskjellen mellom maks og min for både odds og evens
+const rangeOfOdds = maxOfOdds - minOfOdds;
+const rangeOfEvens = maxOfEvens - minOfEvens;
+
 // Lag en template literal for å vise informasjonen på nettsiden
 let newInfo = `Median of Odds: ${medianOfOdds}. Median of Evens: ${medianOfEvens}.<br>`;
 newInfo += `Max of Odds: ${maxOfOdds}. Min of Odds: ${minOfOdds}.<br>`;
@@ -213,7 +262,19 @@ newInfo += `Number of Odds greater than 500: ${over500Odds}. Number of Odds less
 newInfo += `Number of Evens greater than 500: ${over500Evens}. Number of Evens less than 500: ${under500Evens}.<br>`;
 newInfo += commonValues ? `There are common values between Odds and Evens.` : `There are no common values between Odds and Evens.`;
 
-// Oppdater HTML med resultatet
-document.getElementById("newStats").innerHTML = newInfo; 
+// New checks for specific values (like 100)
+newInfo += hasValue100InOdds ? `There is a value of 100 in Odds.` : `There is no value of 100 in Odds.<br>`;
+newInfo += hasValue100InEvens ? `There is a value of 100 in Evens.` : `There is no value of 100 in Evens.<br>`;
 
-  
+// Sum comparison
+newInfo += sumOfOdds > sumOfEvens 
+  ? `The sum of Odds (${sumOfOdds}) is greater than the sum of Evens (${sumOfEvens}).<br>` 
+  : sumOfEvens > sumOfOdds 
+    ? `The sum of Evens (${sumOfEvens}) is greater than the sum of Odds (${sumOfOdds}).<br>`
+    : `The sum of Odds and Evens are equal.<br>`;
+
+// Range comparison (difference between max and min values)
+newInfo += `Range of Odds (Max - Min): ${rangeOfOdds}. Range of Evens (Max - Min): ${rangeOfEvens}.<br>`;
+
+// Oppdater HTML med resultatet
+document.getElementById("newStats").innerHTML = newInfo;
