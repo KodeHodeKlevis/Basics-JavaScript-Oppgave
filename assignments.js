@@ -27,7 +27,6 @@ function filterArray(arr) {
     return { odds, evens };
   }
   
-  //! fiks disse:
   const getOdds = (num) => num % 2 !== 0; // Oddetall (rest 1 når delt på 2)
   const getEvens = (num) => num % 2 === 0; // Partall (rest 0 når delt på 2)
   
@@ -48,7 +47,6 @@ tips2: syntaxen ligner noe på det som blir gjort i oppgave 2, men det er 2 para
 // Dette kalles deconstructing som gjør at man kan referere til variabler på innsiden av et scope (i dette tilfelle fra innsiden av en funksjon):
 const { odds, evens } = filterArray(randomArray);
 
-//! Fiks disse:
 const sumOfOdds = odds.reduce((acc, curr) => acc + curr, 0);  // Legger sammen alle oddetallene
 const sumOfEvens = evens.reduce((acc, curr) => acc + curr, 0); // Legger sammen alle partallene
 
@@ -149,9 +147,7 @@ if (odds.length > evens.length) {
 eks: <p id="dinReferanseVerdi"></p>
 eks: document.getElementByid("dinReferanseVerdiFraPtaggen").textContent = variabel
 
-
 */
-
 
 // Definer nye variabler for gjennomsnittsverdiene
 const avgOfOdds = sumOfOdds / odds.length;  // Gjennomsnitt av oddetallene
@@ -160,17 +156,14 @@ const avgOfEvens = sumOfEvens / evens.length;  // Gjennomsnitt av partallene
 // Definer en variabel for referanse til verdien du skal vise frem
 let averageDifference;
 
-// Oppdater <p> tag'en med resultatet
-document.getElementById("averageDifferenceDisplay").textContent = averageDifference;
-
 // Skriv if/else logikk for å sammenligne gjennomsnittsverdiene
 if (avgOfOdds > avgOfEvens) {
     averageDifference = `The average of odd numbers (${avgOfOdds.toFixed(2)}) is greater than the average of even numbers (${avgOfEvens.toFixed(2)}).`;
-  } else if (avgOfOdds < avgOfEvens) {
+} else if (avgOfOdds < avgOfEvens) {
     averageDifference = `The average of even numbers (${avgOfEvens.toFixed(2)}) is greater than the average of odd numbers (${avgOfOdds.toFixed(2)}).`;
-  } else {
+} else {
     averageDifference = `The average of odd and even numbers are equal: (${avgOfOdds.toFixed(2)}).`;
-  }
+}
 
 /* BONUS Oppgave 7 
 
@@ -184,42 +177,43 @@ f.eks median, størst verdi, minst verdi, hvor mange verdier er over/under en vi
 
 // Funksjon for å finne median
 function findMedian(arr) {
-    const sorted = arr.sort((a, b) => a - b); // Sorter arrayen
-    const mid = Math.floor(sorted.length / 2);
-    if (sorted.length % 2 === 0) {
+  const sorted = arr.sort((a, b) => a - b); // Sorter arrayen
+  const mid = Math.floor(sorted.length / 2);
+  if (sorted.length % 2 === 0) {
       return (sorted[mid - 1] + sorted[mid]) / 2; // Gjennomsnitt av de to midterste for partall lengde
-    } else {
+  } else {
       return sorted[mid]; // Midterste element for oddetall lengde
-    }
   }
-  
-  // Funksjoner for å finne største og minste verdi
-  const maxOfOdds = Math.max(...odds);
-  const minOfOdds = Math.min(...odds);
-  const maxOfEvens = Math.max(...evens);
-  const minOfEvens = Math.min(...evens);
-  
-  // Funksjoner for å telle hvor mange verdier som er over/under 500
-  const over500Odds = odds.filter(num => num > 500).length;
-  const under500Odds = odds.filter(num => num < 500).length;
-  const over500Evens = evens.filter(num => num > 500).length;
-  const under500Evens = evens.filter(num => num < 500).length;
-  
-  // Sjekk om det finnes noen felles verdier i odds og evens
-  const commonValues = odds.some(num => evens.includes(num));
-  
-  // Beregn medianene
-  const medianOfOdds = findMedian(odds);
-  const medianOfEvens = findMedian(evens);
-  
-  // Lag en template literal for å vise informasjonen på nettsiden
-  let newInfo = `Median of Odds: ${medianOfOdds}. Median of Evens: ${medianOfEvens}.<br>`;
-  newInfo += `Max of Odds: ${maxOfOdds}. Min of Odds: ${minOfOdds}.<br>`;
-  newInfo += `Max of Evens: ${maxOfEvens}. Min of Evens: ${minOfEvens}.<br>`;
-  newInfo += `Number of Odds greater than 500: ${over500Odds}. Number of Odds less than 500: ${under500Odds}.<br>`;
-  newInfo += `Number of Evens greater than 500: ${over500Evens}. Number of Evens less than 500: ${under500Evens}.<br>`;
-  newInfo += commonValues ? `There are common values between Odds and Evens.` : `There are no common values between Odds and Evens.`;
-  
-  // Oppdater HTML med resultatet
-  document.getElementById("newStats").inne
+}
+
+// Funksjoner for å finne største og minste verdi
+const maxOfOdds = Math.max(...odds);
+const minOfOdds = Math.min(...odds);
+const maxOfEvens = Math.max(...evens);
+const minOfEvens = Math.min(...evens);
+
+// Funksjoner for å telle hvor mange verdier som er over/under 500
+const over500Odds = odds.filter(num => num > 500).length;
+const under500Odds = odds.filter(num => num < 500).length;
+const over500Evens = evens.filter(num => num > 500).length;
+const under500Evens = evens.filter(num => num < 500).length;
+
+// Sjekk om det finnes noen felles verdier i odds og evens
+const commonValues = odds.some(num => evens.includes(num));
+
+// Beregn medianene
+const medianOfOdds = findMedian(odds);
+const medianOfEvens = findMedian(evens);
+
+// Lag en template literal for å vise informasjonen på nettsiden
+let newInfo = `Median of Odds: ${medianOfOdds}. Median of Evens: ${medianOfEvens}.<br>`;
+newInfo += `Max of Odds: ${maxOfOdds}. Min of Odds: ${minOfOdds}.<br>`;
+newInfo += `Max of Evens: ${maxOfEvens}. Min of Evens: ${minOfEvens}.<br>`;
+newInfo += `Number of Odds greater than 500: ${over500Odds}. Number of Odds less than 500: ${under500Odds}.<br>`;
+newInfo += `Number of Evens greater than 500: ${over500Evens}. Number of Evens less than 500: ${under500Evens}.<br>`;
+newInfo += commonValues ? `There are common values between Odds and Evens.` : `There are no common values between Odds and Evens.`;
+
+// Oppdater HTML med resultatet
+document.getElementById("newStats").innerHTML = newInfo; 
+
   
